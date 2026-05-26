@@ -32,8 +32,8 @@ async function countValidBooks(filePath) {
     for await (chunk of stream) {
         trackerString += chunk;
 
-        while(trackerString.includes("</book>")){
-            const endIndex = trackerString.indexOf("</book>") + endTag.length;
+        while(trackerString.includes(endTag)){
+            const endIndex = trackerString.indexOf(endTag) + endTag.length;
             const entry = trackerString.slice(trackerString.indexOf("<book>"), endIndex);
 
             checkBook(entry, catalogMetrics);

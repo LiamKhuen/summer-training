@@ -46,7 +46,7 @@ async function countValidBooks(filePath) {
     console.log("The total length of all books containing Era data is: " + catalogMetrics.totalLengthVB + "\nThe count of books missing Era data is: " + catalogMetrics.missingEraCount);
 }
 
-/* ---------- Helper Methods ---------- */
+/* ---------- Helper Functions ---------- */
 function checkBook(bookEntry, metrics){
 
     bookEntry.match(/<era>.+<\/era>/g)
@@ -55,4 +55,6 @@ function checkBook(bookEntry, metrics){
 
 }
 
+
+/* ---------- Main Function Call ---------- */
 countValidBooks(sampleData);

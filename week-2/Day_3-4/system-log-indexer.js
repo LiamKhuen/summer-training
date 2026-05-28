@@ -12,6 +12,7 @@ function logIndexBuilder(file){
         // Setting default value to null as an easy catch if this variable is used later.
         logData = null;
         console.error(err);
+        return;
     }
     
     for (const entry of logData){
@@ -25,14 +26,19 @@ function logIndexBuilder(file){
 /* ---------- Helper Functions ---------- */
 
 function recordLog(logEntry, indexObj){
-    const env = logEntry.environment ?? "Unknown";
-    const status = logEntry.status ?? "Unknown";
+    if(logEntry != null){
+        const env = logEntry.environment ?? "Unknown";
+        const status = logEntry.status ?? "Unknown";
 
-    // Dynamically build logIndex schema via short-circuit allocation
-    indexObj[env] ??= {};
-    indexObj[env][status] ??= [];
+        // Dynamically build logIndex schema via short-circuit allocation
+        indexObj[env] ??= {};
+        indexObj[env][status] ??= [];
 
-   indexObj[env][status].push(logEntry.id ?? "Unknown");
+    indexObj[env][status].push(logEntry.id ?? "Unknown");
+    } else{
+        indexObj.Quarantine ??= {};
+        indexObj.Quarantine.count = (indexObj.Quarantine.count ?? 0) + 1;
+    }
 }
 
 /* ---------- Main Function Call ---------- */

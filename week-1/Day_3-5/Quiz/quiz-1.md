@@ -11,18 +11,22 @@ A while loop design is superior because you can build into the loop condition a 
 
 ## Question 2: Memory Optimization & Expression Returns
 Analyze the poorly structured evaluation script listed below. Refactor this block completely to strip out redundant local state variables, streamlining the execution logic to return expression evaluations directly to the caller:
-`def check_analyst_clearance(user_role):
+```
+def check_analyst_clearance(user_role):
     status = False
     if user_role == "Technical Analyst":
         status = True
     else:
         status = False
-    return status`
+    return status
+```
 
 ### Answer
 Here is the refactored code:
-`def check_analyst_clearance(user_role):
-    return user_role == "Technical Analyst"`
+```
+def check_analyst_clearance(user_role):
+    return user_role == "Technical Analyst"
+```
 
 In the above refactored code, I stripped out the local variable "status" and opted for a direct return statement within the if/else checks. Variables are ideal when a particular data or data set needs to remain accessible for multiple purposes. (i.e., DRY method) However, for simple processes where the data is only needed for a single operation, we should avoid storing it to prevent temp memory overload.
 
@@ -37,13 +41,15 @@ Write a functional, unassisted code snippet in pure vanilla JavaScript that acce
 
 ### Answer
 Here is the full code snippet I wrote:
-`const unsortedNumbers = [82, 14, 93, 4, 67, 31, 55, 78, 22, 49, 12, 88, 36, 71, 5, 60, 43, 99, 17, 26];
+```
+const unsortedNumbers = [82, 14, 93, 4, 67, 31, 55, 78, 22, 49, 12, 88, 36, 71, 5, 60, 43, 99, 17, 26];
 
 function removeOdds(nums){
     return nums.filter((num) => num % 2 === 0);
 }
 
-console.log(removeOdds(unsortedNumbers));`
+console.log(removeOdds(unsortedNumbers));
+```
 
 I started this code using a .reduce() method call instead of .filter(). I used a short-curcuit in the reduce function, but that was returning an array of even numbers *and* "false" values. I then remembered that the filter method was more direct in the return of expected values for simple evaluations. I did not use any code generation from AI for this and I did not copy and paste any snippets. However, I should be transparent and clarify that I used the following two resources to refresh me on .reduce() and .filter():
 - [.reduce() MDN Docs](developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
